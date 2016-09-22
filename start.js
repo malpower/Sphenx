@@ -1,14 +1,32 @@
-let downloader=require("./imgDownloader");
+let ImageDownloader=require("./imgDownloader");
 let pageCA=require("./pageContentAsker");
+let conf=require("./conf");
 
 
-downloader.init(function(dler)
+let dlers=new Array;
+for (let i=0;i<10;i++)
 {
-    pageCA.init("https://sg.yahoo.com/?p=us",function(images)
+    let x=new ImageDownloader;
+    x.init(function(dler)
+    {
+        dlers.push(dler);
+        if (dlers.length===10)
+        {
+            process.nextTick(StartCrawl);
+        }
+    });
+}
+function StartCrawl()
+{
+    let pointer=0;
+    pageCA.init(conf.entry,function(images)
     {
         for (let i=0;i<images.length;i++)
         {
-            dler.applyTask(images[i]);
+            pointer%=10;
+            dlers[pointer].applyTask(images[i]);
+            console.log(images[i]);
+            pointer++;
         }
     });
-});
+}

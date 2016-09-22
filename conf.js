@@ -1,4 +1,10 @@
 module.exports={taskPoolSize: 10,
                 outOfDomain: false,
                 database: "mongodb://127.0.0.1:27017/Sphenx",
-                downloadPath: "./downloads"};
+                downloadPath: "./downloads",
+                domains: ["img2.newmotor.com.cn",
+                          "img.newmotor.com.cn",
+                          "newmotor.com.cn",
+                          "www.newmotor.com.cn",
+                          "img1.newmotor.com.cn"],
+                entry: "http://www.newmotor.com.cn/"};
