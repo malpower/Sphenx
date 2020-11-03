@@ -61,6 +61,7 @@ class Framework
             }
             await Promise.all(ps);
         }
+        return this.scannedPageUrls;
     }
     async analysisPage()
     {
